@@ -151,3 +151,20 @@ class Grammar:
                     is_epsilon[rule.non_terminal] = True
                     changed = True
         return is_epsilon
+
+
+def generate_grammar(list_rules):
+    rules = []
+    non_terminal = set()
+    all_symbols = set()
+    for rule in list_rules:
+        index = rule.find("->")
+        left = rule[:index]
+        right = rule[index + 2:]
+        rules.append(Rule(left, right))
+        for symbol in left:
+            non_terminal.add(symbol)
+        for symbol in right:
+            all_symbols.add(symbol)
+    terminals = all_symbols - non_terminal
+    return Grammar(list(terminals), list(non_terminal), "S", rules)

@@ -39,9 +39,8 @@ class Action:
 
 
 def check_cell(cell, result):
-    pass
-    #if cell.action != ActionType.ERROR and cell != result:
-    #    raise Exception("It is not a LR1 grammar")
+    if cell.action != ActionType.ERROR and cell != result:
+        raise Exception("It is not a LR1 grammar")
 
 
 class LRAutomate:
